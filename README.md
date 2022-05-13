@@ -14,7 +14,10 @@
 
 ## Methodology
 
-### Matching Tools
+### High Level - Overview
+![Methodology-overview](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/high-level-methodology/image/Methodology%20-%20High%20Level.png)
+
+### Detail - Matching Tools
 ![Methodology-Tools](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/140-model-methodology/image/Methodology%20-%20Matching%20Tools%201.png)
 
 ## Findings
