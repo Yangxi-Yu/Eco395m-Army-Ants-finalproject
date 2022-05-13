@@ -1,3 +1,4 @@
+# import libraries and packages
 from database import engine
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -8,8 +9,7 @@ from nltk.tokenize import word_tokenize
 from sqlalchemy.types import String, Numeric
 import re
 
-
-
+# clean the data, and generate the html text column
 def add_cleaned_html_text_column(job_description_html_df):
     len_df = len(job_description_html_df)
     job_description_html_df['clean_description'] = ''
@@ -18,13 +18,14 @@ def add_cleaned_html_text_column(job_description_html_df):
         script = html.find_all(id = 'jobDescriptionText')
         if script != []:
             extract_text = script[0].text
+            # make all lower, and remove unecessary contents
             text_remove_punctuation = re.sub('[^A-Za-z\s]', '', extract_text.lower())
             text_with_only_spaces = re.sub("\s+", " ", text_remove_punctuation)
             cleaned_text = re.sub('\n', ' ', text_with_only_spaces)
             job_description_html_df['clean_description'][i] = cleaned_text
     return job_description_html_df
 
-
+# clean the job description, and remove all the unmeaningful soft words
 def add_v_n_j_only_description(job_description_html_df, raw_column_name, new_column):
     job_description_html_df[new_column] = ''
     len_train = len(job_description_html_df)
@@ -41,7 +42,7 @@ def add_v_n_j_only_description(job_description_html_df, raw_column_name, new_col
         job_description_html_df[new_column][row] = n_v_j_txt
     return job_description_html_df
 
-
+# add the degree column
 def add_degree_column(job_description_html_df):
     len_df = len(job_description_html_df)
     job_description_html_df['degree'] = ''
@@ -56,7 +57,7 @@ def add_degree_column(job_description_html_df):
             job_description_html_df['degree'][i] = 'phd'
     return job_description_html_df
 
-
+# add the experience column
 def add_experience_column(job_description_html_df):
     len_df = len(job_description_html_df)
     job_description_html_df['required_experience'] = ''
@@ -68,9 +69,11 @@ def add_experience_column(job_description_html_df):
             job_description_html_df['required_experience'][i] = re.search('[0-9]', find_sentence).group(0)
     return job_description_html_df
 
+# add the experience level column
 def add_experience_level_column(job_description_html_df):
     len_df = len(job_description_html_df)
     job_description_html_df['exp_level'] = ''
+    # define the range of different experience levels
     for i in range(0,len_df):
         if job_description_html_df['required_experience'][i] == '':
             job_description_html_df['exp_level'][i] = '0-3'
