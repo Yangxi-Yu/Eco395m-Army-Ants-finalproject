@@ -1,8 +1,82 @@
-import re
-from sklearn.feature_extraction.text import CountVectorizer
+from database import engine
 import pandas as pd
+import re
 import numpy as np
 from numpy.linalg import norm
+from sklearn.feature_extraction.text import CountVectorizer
+from datetime import date
+from sqlalchemy.types import String, Numeric
+
+def add_date_diff_column(job_posted_date_df):
+    job_posted_date_df['date_diff'] = ''
+    for i in range(0, len(job_posted_date_df)):
+        if pd.isnull(job_posted_date_df.loc[i, 'date']):
+            # in case of date is null
+            job_posted_date_df.loc[i, 'date_diff'] = 100000000000
+        else:
+            job_posted_date_df.loc[i, 'date_diff'] = abs(job_posted_date_df['date'][i].date() - date.today()).days
+    return job_posted_date_df
+
+
+def data_source_filter(position, degree, location, exp_level, date_post):
+    job_description_df = pd.read_sql_table("merge_job_cleaned_description", engine)
+    job_basic_info_df = pd.read_sql_table("job_basic_information_all", engine)
+    job_posted_date_df = pd.read_sql_table("merge_job_post_date", engine)
+    
+    
+    job_description_df_part = job_description_df[['jid', 'title', 'clean_description_n_v_j_only', 'degree', 'exp_level']]
+    job_basic_info_df_part = job_basic_info_df[['jid', 'location']]
+    job_posted_date_df_part = job_posted_date_df[['jid', 'date']]
+    
+    data_source_df = job_description_df_part.merge(job_basic_info_df_part, how = 'left', on = 'jid')
+    data_source_df = data_source_df.merge(job_posted_date_df_part, how = 'left', on = 'jid')
+    data_source_df = add_date_diff_column(data_source_df)
+    data_source_df = data_source_df.replace(np.nan, '')
+
+    if position == 'All':
+        position_da = 'Data Analyst'
+        position_de = 'Data Engineer'
+        position_ds = 'Data Scientist'
+        positon_general = ''
+    else:
+        position_da = ''
+        position_de = ''
+        position_ds = ''
+        positon_general = position
+        
+    if degree == 'phd':
+        degree_phd = 'phd'
+        degree_master = 'master'
+        degree_bachelor = 'bachelor'
+    elif degree == 'master':
+        degree_phd = ''
+        degree_master = 'master'
+        degree_bachelor = 'bachelor'
+    else:
+        degree_phd = ''
+        degree_master = ''
+        degree_bachelor = 'bachelor'
+
+
+    if location == 'All':
+        location_ny = 'New York State'
+        location_ca = 'California'
+        location_tx = 'Texas'
+        location = ''
+    else:
+        location_ny = ''
+        location_ca = ''
+        location_tx = ''
+    
+    data_source_filter_df = (data_source_df
+                             .loc[data_source_df['title'] == (position_da or position_de or position_ds or positon_general)]
+                             .loc[data_source_df['degree'] == (degree_phd or degree_master or degree_bachelor)]
+                             .loc[data_source_df['exp_level'] == exp_level]
+                             .loc[data_source_df['location'] == (location_ny or location_ca or location_tx or location)]
+                             .loc[data_source_df['date_diff'] <= int(date_post)])
+    
+    
+    return data_source_filter_df
 
 def calculate_cosine_similarity(array_A, array_B):
     """calculate cosine similarity"""
