@@ -1,4 +1,22 @@
 import re
+from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
+
+
+def extract_features(data_source_df, data_source_column):
+    vectorizer = CountVectorizer()
+    vectorizer.fit(data_source_df[data_source_column].tolist())
+    vector = vectorizer.transform(data_source_df[data_source_column].tolist())
+    
+    np_array = vector.toarray()
+    np_index = data_source_df['jid'].tolist()
+    np_columns = vectorizer.get_feature_names_out()
+
+
+    features_df = pd.DataFrame(data = np_array, index = np_index, columns = np_columns)
+    
+    return features_df
+
 
 def clean_input_text(input_text):
     resume_string_without_punctuation = re.sub(r'[^\w\s]', '', input_text)
