@@ -68,6 +68,19 @@ def add_experience_column(job_description_html_df):
             job_description_html_df['required_experience'][i] = re.search('[0-9]', find_sentence).group(0)
     return job_description_html_df
 
+def add_experience_level_column(job_description_html_df):
+    len_df = len(job_description_html_df)
+    job_description_html_df['exp_level'] = ''
+    for i in range(0,len_df):
+        if job_description_html_df['required_experience'][i] == '':
+            job_description_html_df['exp_level'][i] = '0-3'
+        elif int(job_description_html_df['required_experience'][i]) <= 3:
+            job_description_html_df['exp_level'][i] = '0-3'
+        elif int(job_description_html_df['required_experience'][i]) <= 5:
+            job_description_html_df['exp_level'][i] = '3-5'
+        elif int(job_description_html_df['required_experience'][i]) > 5:
+            job_description_html_df['exp_level'][i] = '5+'
+    return job_description_html_df
 
 if __name__ == '__main__':
 
