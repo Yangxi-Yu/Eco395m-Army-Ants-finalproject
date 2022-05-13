@@ -44,14 +44,27 @@ After making the data visualization in Tableau, we get a story composed of 2 das
 From a geographical view, NYC has the most job posted; jobs in Texas are mostly in Austin, Houston, and Dallas; jobs in California are mainly posted from San Francisco and Los Angeles. Most data-related jobs are in the big cities, especially in Texas and New York. Jobs in TX and NY are concentrated in big cities, but jobs in California are relatively scattered and are distributed in cities around SF and LA.
 
 Now we choose three representative cities: Austin, New York, and San Francisco from Texas, New York State, and California.
+<br />
+<br />
 
+
+
+![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/Austin.GIF)
 Austin, TX
 The number of job postings is almost the same as in March-April, but the summit in March is in the middle of the month, that in April is at the end of the month. The companies in Austin focus on technology and manufacturing, and famous companies are Advanced Micro Devices and General Motors.
+<br />
+<br />
+<br />
 
+![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/New%20York.GIF)
 
 New York City
 Compared with March, the number of NYC job postings declined in April, but suddenly surged in the last week. The companies in NYC focus on financial services and information technology, and many famous companies like JP Morgan, Citi, and Deloitte had high demand
+<br />
+<br />
+<br />
 
+![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/Los%20Angeles.GIF)
 
 Los Angeles, CA
 The overall number of data-related jobs provided in March and April was basically unchanged, and the trend in different periods of each month was also similar. The main Industries are Education and Informational Technology. Many famous companies are CGI Group and Microsoft in LA. 
@@ -59,13 +72,21 @@ The overall number of data-related jobs provided in March and April was basicall
 
 ### Searching
 
+![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/Searching.GIF)
 Taking Austin, TX as an example, because we’re current graduate students, so we set the master's degree. Firstly, we got recommended 86 jobs in this process, and the top 3 skills needed are SQL, Python, and Cloud, which is consistent with the results of the mid-term project. Also, the office occupies an important position. Most job descriptions lack the salary part and the need for entry-level is more than in others. Secondly, we now add the bachelor's level, which gives us 545 jobs, which is much more than the jobs that require a higher degree. Thus, most data-related job only requires a bachelor's degree. In addition, we set that Rating 0-3.5 represents the dissatisfaction of employees with data positions. From our data, the master dissatisfaction rate is 17/86=19.77%, and the rate decreases to 91/545= 16.70% when we add the bachelor in the group. Having compared different degree levels’ data, we can conclude that the higher the degree required, the lower the job satisfaction. Maybe the reason is the master level job needs more tasks and the employee will meet more pressure in the working process. So, this might increase the job dissatisfaction rate of higher degrees. 
 
 Now we make the cross-sectional analysis. In the past 3 months, the proportion of the remote job and the job satisfaction are increasing. It’s reasonable for the job contentment when we consider the recovery from the covid pandemic. For the job type, it’s surprising that the remote job has risen, and we guess that would be the future trend and many job seekers will consider more data positions when they search the job information.
 
 The next part below the horizontal bar chart is one table that includes the company’s name, city, job titles, and job links. The number of information corresponds to the total number: 86 after we select the Austin and master’s degree levels. Job seekers can just click the link and apply for it on indeed and it’s very convenient for job seekers to see and find real jobs quickly if they fill out basic information at the top of this page.
+<br />
+
+![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/Similarity.GIF)
 
 Another advantage of this searching page is at the left corner named Similarity Matrix. If job seekers click the job title in the job posting part, it will connect the specific information of this job in Indeed. When they go back to the Searching page of the Dashboard, the page will use this job id and illustrate other Top 10 similar jobs which job seekers can choose and compare. 
+<br />
+<br />
+<br />
+![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/Recommendation.GIF)
 
 This page also includes one cartoon image which attracts people to click. When job seekers click it, it will connect to one Jupyter lab, and job seekers can type jobs’ basic information on this page. When it runs and the Searching page has been renewed after interacting with Jupyter, the Recommendation part in the right corner provides several jobs which fulfill the requirement of job seekers’ willingness and job’s basic information. This interaction can help job seekers get several recommendations when they use the Searching page. 
 
