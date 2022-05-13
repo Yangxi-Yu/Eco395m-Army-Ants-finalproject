@@ -62,6 +62,103 @@ Now we make the cross-sectional analysis. In the past 3 months, the proportion o
 
 ## Instructions
 
+### 0. Installation
+Run `pip install -r requirements_final.txt`
+
+### 1. Data Scraping
+Please note that the data scraping process may take a lot of time, so, it’s better to skip this section and start reproduce process from section 2 – Data Cleaning.
+Output: `merge_searched_html_all`; `merge_job_des_html`
+Step 1. Get Searched Job List HTML
+Run `python3 database_code/get_searched_job_html.py` and enter position, location, date range, sort to scrape the job list html in the indeed website. Enter a job title (Data Analyst/ Data Scientist/ Data Engineer), a location (Texas/ California/ New York State), a time period (30) and sorting (date) to get page html tables. Here are all the tables that need to be generated in this step:
+|Generate Tables|Parameters Entered|
+|--------------|------------------|
+|data_analyst_texas_30|Data Analyst, Texas, 30, date|
+|data_analyst_california_30|Data Analyst, California, 30, date|
+|data_analyst_new_york_state_30|Data Analyst, New York State, 30, date|
+|data_engineer_texas_30|Data Engineer, Texas, 30, date|
+|data_engineer_california_30|Data Engineer, California, 30, date|
+|data_engineer_new_york_state_30|Data Engineer, New York State, 30, date|
+|data_scientist_texas_30|Data Scientist, Texas, 30, date|
+|data_scientist_california_30|Data Scientist, California, 30, date|
+|data_scientist_new_york_state_30|Data Scientist, New York State, 30, date|
+
+Run `python3 database_code/merge_html_tables.py`, which merges nine tables in step 1. The output table is `merge_searched_job_html`. We need create bucket in GCP to upload the corresponding table in midterm, named `old_merge_searched_job_html`, and insert it into database. Run `merge_page_html.sql` to merge midterm and final tables into one table named `merge_searched_html_all` in the sql command.
+
+Step 2. Select jobs in each job titles (Data Analyst, Data Engineer, Data Scientist) and get their job description HTML
+This time we select all of jobs, releasing the restriction of just selecting 300 jobs in midterm project. Run `python3 database_code/get_job_descriptions_final.py` and `python3 database_code/get_job_descriptions_midterm.py` and enter a job title (Data Analyst/ Data Scientist/ Data Engineer) to get all of the job descriptions. Here are all the tables that need to be generated:
+|Generate Tables|Parameters Entered|
+|--------------|------------------|
+|job_des_html_data_analyst|Data Analyst|
+|job_des_html_data_engineer|Data Engineer|
+|job_des_html_data_scientist|Data Scientist|
+|job_des_html_midterm_data_analyst|Data Analyst|
+|job_des_html_midterm_data_engineer|Data Engineer|
+|job_des_html_midterm_data_scientist|Data Scientist|
+In sql, merge tables of midterm data with tables with final data and get merge_job_des_html. Run `database-code/merge_job_des_html.sql` in Dbeaver to get `merge_job_des_html` table.
+
+2. Data Cleaning: clean HTML tables to get basic information for each job
+Output: `job_basic_information_midterm`, `job_basic_information_final`, `job_basic_information_all`
+Run `python3 database_code/html_dataframe.py` to generate job_basic_information_midterm, job_basic_information_final, job_basic_information_all with information of job_id, salary, ratings, company, location, title, specific location and specific title. 
+|Generate Tables|Parameters Entered|
+|--------------|------------------|
+|job_basic_information_midterm|Midterm|
+|job_basic_information_final|Final|
+|job_basic_information_all|All|
+
+3. Data Cleaning: clean HTML tables to get posted date for each job
+Output: `job_post_date`; `job_post_date_midterm`; `merge_job_post_date`
+Run `python3 database_code/job_post_date.py` and `python3 database_code/job_post_date_midterm.py` to generate job_post_date with job_id, title, location and some information of posted date. In sql, we get two tables named `job_post_date` and `job_post_date_midterm`. Then run `database-code/merge_job_post_date.sql` to merge these two tables into `merge_job_post_date`.
+
+4. Data Cleaning: clean HTML tables to get detailed information for each job
+Output: `merge_jid_cmp`; `merge_cmp_industry`
+Step 1. Get the tables of industry information
+Run `python3 database_code/get_industry.py` and enter a job title (Data Analyst/ Data Scientist/ Data Engineer) and a time period (Midterm/ Final) to fetch industry information for all the jobs. Here are the output files:
+|Generate Tables|Parameters Entered|
+|--------------|------------------|
+|data_analyst_final_jid_cmp|Data Analyst, Final|
+|data_engineer_final_jid_cmp|Data Engineer, Final|
+|data_scientist_final_jid_cmp|Data Scientist, Final|
+|data_analyst_final_cmp_industry|Data Analyst, Final|
+|data_engineer_final_cmp_industry|Data Engineer, Final|
+|data_scientist_final_cmp_industry|Data Scientist, Final|
+|data_analyst_midterm_jid_cmp|Data Analyst, Midterm|
+|data_engineer_midterm_jid_cmp|Data Engineer, Midterm|
+|data_scientist_midterm_jid_cmp|Data Scientist, Midterm|
+|data_analyst_midterm_cmp_industry|Data Analyst, Midterm|
+|data_engineer_midterm_cmp_industry|Data Engineer, Midterm|
+|data_scientist_midterm_cmp_industry|Data Scientist, Midterm|
+In Dbeaver, run `database_code/merge_jid_cmp.sql` to merge tables containing job id and company name into one table named `merge_jid_cmp`. Similarly, run `database/merge_cmp_industry.sql` to get one table named `merge_cmp_industry` by dealing with tables containing company name and industry.
+
+Step 2. Clean the tables above
+In merge_cmp_industry table, there are 3 situations needed to be solved. 1) a same company has different expressions for industry, such as ‘HealthCare’ and ‘Health Care’. 2) The industry corresponding to a same company has a real value and an empty value. 3) Some companies have empty values of industry.
+To solve these problems, we group the companies by name, taking only the first line, ensuring that each company corresponds to an industry, i.e., run `database_code/clean_cmp_industry.sql`
+
+Step 3. Get counting of skills
+Run `python3 database_code/get_skills_list.py` and enter a job title (Data Analyst/ Data Scientist/ Data Engineer) and enter a time period (Midterm/ Final) to fetch industry information for all the jobs in section. Here are the output tables:
+|Generate Tables|Parameters Entered|
+|--------------|------------------|
+|job_skill_counts_data_analyst_midterm|Data Analyst; Midterm|
+|job_skill_counts_data_engineer_midterm|Data Engineer; Midterm|
+|job_skill_counts_data_scientist_midterm|Data Scientist; Midterm|
+|job_skill_counts_data_analyst_final|Data Analyst; Final|
+|job_skill_counts_data_engineer_final|Data Engineer; Final|
+|job_skill_counts_data_scientist_final|Data Scientist; Final|
+In Dbeaver, run `database_code/merge_job_skill_list.sql` to merge tables above by job title to get three tables: `merge_job_skill_counts_data_analyst_midterm`, `merge_job_skill_counts_data_engineer`, `merge_job_skill_counts_data_scientist`.
+
+
+
+
+7. Build relationships between merged tables
+Run `database_code/build_up_relationships.sql` in Dbeaver:
+(1) Select `company name` as a primary key in `merge_company_name_industry` table, and connect the foreign key `company name` in `merge_jid_cmp table`.
+(2) Select `jid` as a primary key in `merge_job_des_html` table, and connect the foreign key `jid` in `merge_jid_cmp` table.
+(3) Select `jid` as a foreign key in `job_basic_information_all` table, and connect the primary key `jid` in `merge_job_des_html` table.
+(4) Select `jid` as a foreign key in `merge_job_post_date` table, and connect the primary key `jid` in `merge_job_des_html` table.
+
+
+
+
+
 ### 2-1. Data Cleaning – clean job description
 Run `python3 code/clean_job_description.py` and enter job title, scraping time, which will clean job description HTML for each job in our database and add degree, experience level columns.
 
@@ -73,9 +170,11 @@ Run `python3 code/clean_job_description.py` and enter job title, scraping time, 
 |job_cleaned_description_final_data_analyst|Data Analyst, Final|
 |job_cleaned_description_final_data_scientist|Data Scientist, Final|
 |job_cleaned_description_final_data_engineer|Data Engineer, Final|
+Then we run `database_code/merge_job_cleaned_description.sql` to merge all of job cleaned description tables
+
 
 ### 2-2. Job-Job Matching Tool
-Run `python3 code/ select_top_10_related_jid.py`, which return a top 10 related jobs for each job in our database. The output table is `select_top_10`.
+Run `python3 code/ select_top_10_related_jid.py`, which return a top 10 related jobs for each job in our database. The output table is `select_top_10`. We merge top_10 tables by title and get a general table by running `database_code/merge_top_10_table.sql`
 
 ### 2-3. Resume-Job Matching Tool
 Open and run `input.ipynb`, and enter Job Title, Location, Date Posted, your Highest Education, Experience Level, and your resume/keywords you want to search. It will return a top 50 related job in our database. The output table is `cosine_similarity_matrix`.
