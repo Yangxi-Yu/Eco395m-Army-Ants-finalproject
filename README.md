@@ -94,6 +94,7 @@ This time we select all of jobs, releasing the restriction of just selecting 300
 |job_des_html_midterm_data_analyst|Data Analyst|
 |job_des_html_midterm_data_engineer|Data Engineer|
 |job_des_html_midterm_data_scientist|Data Scientist|
+
 In sql, merge tables of midterm data with tables with final data and get merge_job_des_html. Run `database-code/merge_job_des_html.sql` in Dbeaver to get `merge_job_des_html` table.
 
 2. Data Cleaning: clean HTML tables to get basic information for each job
