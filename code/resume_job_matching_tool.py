@@ -1,7 +1,13 @@
 import re
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
+import numpy as np
+from numpy.linalg import norm
 
+def calculate_cosine_similarity(array_A, array_B):
+    """calculate cosine similarity"""
+    cosine = np.dot(array_A,array_B)/(norm(array_A)*norm(array_B))
+    return cosine
 
 def extract_features(data_source_df, data_source_column):
     vectorizer = CountVectorizer()
