@@ -5,6 +5,7 @@ import numpy as np
 from numpy.linalg import norm
 
 def calculate_cosine_similarity(array_A, array_B):
+    """calculate cosine similarity"""
     cosine = np.dot(array_A,array_B)/(norm(array_A)*norm(array_B))
     return cosine
 
