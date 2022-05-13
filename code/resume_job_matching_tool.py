@@ -131,3 +131,17 @@ def input_txt_return_top_50_related_job(job_description_features_df, cleaned_inp
     sorted_jid_cosine_similarity_dict = dict(sorted(jid_cosine_similarity_dict.items(), key=lambda item: item[1], reverse=True))
     jid_cosine_similarity_df = pd.DataFrame(sorted_jid_cosine_similarity_dict.items(), columns=['jid', 'cosine_similarity'])
     return jid_cosine_similarity_df.head(50)
+
+def consine_matrix_to_sql(df):
+    schema = {
+        "jid" : String,
+        "cosine_similarity" : Numeric,
+    }
+
+    create_table_cmd = """
+        create table if not exists cosine_similarity_matrix(
+            jid varchar,
+            cosine_similarity numeric);"""
+    
+    df.to_sql("cosine_similarity_matrix", engine, if_exists="replace", dtype=schema, index=False)
+    engine.connect().exec_driver_sql(create_table_cmd)
