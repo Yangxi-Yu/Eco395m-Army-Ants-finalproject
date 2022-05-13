@@ -18,16 +18,25 @@ The raw data comes from the [Indeed](https://www.indeed.com) website.
 ## Goal of the Analysis
 The final project will continue to explore the topic in Midterm of how to find the data-relevant position in Indeed. The goals are to give an insightful idea about the data-relevant job market in Texas, California, and New York, visualized by Tableau and to help job-seekers match the job position effectively and efficiently by developing a interactive matching tool. 
 
-Compared with our midterm project, there are some improvements: 1. Using PostgreSQL to store the web-scraping data from Indeed and organize and optimize the database efficiently; 2. Using Data Studio as Dashboard to visualize the data and illustrates the trend of different position on a time-varying scale;
-3. Using regex, NLTK and NLP for text analysis (soft skills, responsibility, and requirement) and machine learning algorithm( or cos-similarity) to improve the matching accuracy.
+Compared with our midterm project, there are some improvements: 
+1. Using PostgreSQL to store the web-scraping data from Indeed and organize and optimize the database efficiently; 
+2. Using Tabkeau as Dashboard to visualize the data and illustrates the trend of different position on a time-varying scale;
+3. Develop a matching tool to find the most related job postings in our database.
 
 ## Methodology
 
 ### High Level - Overview
 ![Methodology-overview](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/high-level-methodology/image/Methodology%20-%20High%20Level.png)
 
+### Detail - Web Scraping
+![Methodology-web scraping](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/main/image/Methodology%20-%20Web%20Scraping.PNG)
+
 ### Detail - Matching Tools
 ![Methodology-Tools](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/140-model-methodology/image/Methodology%20-%20Matching%20Tools%201.png)
+
+### Detail - Database Schema 
+![Methodology-Database](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/main/image/Methodology%20-%20database.png)
+
 
 ## Findings
 After making the data visualization in Tableau, we get a story composed of 2 dashboards: Overview and Searching. The Overview gives basic information about the posted jobs across NY, TX, and CA. When choosing a specific country, the dashboard will show the country-specific job salary, the number of job postings, the main industry, and the companies. The interactive dashboard pictures the general portrait of the data-related jobs. Then we design the Searching, which includes the information of posted jobs, to help jobseekers to find jobs based on their unique needs by using the filter on the top.
