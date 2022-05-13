@@ -1,3 +1,4 @@
+CREATE VIEW t_job_type AS
 select *,
 case when "location" like '%Remote%' then 'Remote'
 when "location" like '%Hybrid%' then 'Hybrid'
