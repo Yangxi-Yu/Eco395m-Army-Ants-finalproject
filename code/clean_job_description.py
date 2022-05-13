@@ -57,6 +57,18 @@ def add_degree_column(job_description_html_df):
     return job_description_html_df
 
 
+def add_experience_column(job_description_html_df):
+    len_df = len(job_description_html_df)
+    job_description_html_df['required_experience'] = ''
+    for i in range(0,len_df):
+        html = BeautifulSoup(job_description_html_df['jidhtml'][i],'html.parser')
+        script = html.find_all(id = 'jobDescriptionText')
+        if re.search('[0-9](.*) years(.*)experience', str(script).lower()):
+            find_sentence = re.search('[0-9](.*) years(.*)experience', str(script).lower()).group(0)
+            job_description_html_df['required_experience'][i] = re.search('[0-9]', find_sentence).group(0)
+    return job_description_html_df
+
+
 if __name__ == '__main__':
 
     job_description_html_df = add_cleaned_html_text_column(job_description_html_df)
