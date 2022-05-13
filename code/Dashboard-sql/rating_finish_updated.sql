@@ -1,3 +1,4 @@
+create view rl as
 select result.*,case
     when result.rating >= 0 and result.rating < 3.5 then 'Rating 0-3.5'
     when result.rating >= 3.5 and result.rating <= 3.8 then 'Rating 3.5-3.8'
