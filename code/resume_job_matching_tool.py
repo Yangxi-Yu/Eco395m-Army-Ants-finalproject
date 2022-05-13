@@ -32,3 +32,13 @@ def clean_input_text(input_text):
     cleaned_input_text = remove_extra_white_space.lower()
     return cleaned_input_text
 
+def convert_cleaned_input_to_array(cleaned_input_txt, job_description_features_df):
+    input_feature = {}
+    for feature in job_description_features_df.columns:
+        if feature in cleaned_input_txt:
+            input_feature[feature] = cleaned_input_txt.count(feature)
+        else:
+            input_feature[feature] = 0
+    input_array = np.array(list(input_feature.values()))
+    
+    return input_array
