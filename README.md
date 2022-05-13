@@ -66,8 +66,16 @@ Now we make the cross-sectional analysis. In the past 3 months, the proportion o
 
 
 
-## Limitation
-1. Intuitively, the salary for the same position is higher in NYC than in California and Texas. However, from our dashboard, it’s the opposite. San Francisco’s posted position’s salary is the highest. The possible reason is that many posted jobs don’t mention their salary in the job description, thus leading to this bias. Another reason is NYC has many diverse companies and some small corporates provide lower salary to jobseekers. This can decrease the mean salary of data positions in NYC and the result opposites our intuitions. We will research and use more data to get accurate information on the data-related positions in big cities.
+## Limitations
+1. Refreshing and loading data source can take a long time (usually takes 3 - 4 days).
+2. Dashboard cannot interact well with jupyter notebook.
+3. For the job title classifications and locations, this project only selects specific jobs by filtering keywords such as'data analyst' and 'Texas'. However, data-related jobs may have various names but have similar job descriptions, and this hiring information is ignored, which leads to incomplete data collection.
+4. Intuitively, the salary for the same position is higher in NYC than in California and Texas. However, from our dashboard, it’s the opposite. San Francisco’s posted position’s salary is the highest. The possible reason is that many posted jobs don’t mention their salary in the job description, thus leading to this bias. Another reason is NYC has many diverse companies and some small corporates provide lower salary to jobseekers. This can decrease the mean salary of data positions in NYC and the result opposites our intuitions. We will research and use more data to get accurate information on the data-related positions in big cities.
+
+## Extensions
+1. Consider to use Streamlit rather than Tableau, which can interact soomthly with users.
+2. Use automatic ETL process to refresh the data source and load in the database. 
+3. Use PostgreSQL Full Text search to improve the matching tool performance.
 
 ## Instructions
 
