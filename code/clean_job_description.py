@@ -8,6 +8,18 @@ from nltk.tokenize import word_tokenize
 from sqlalchemy.types import String, Numeric
 import re
 
+JOB_TITLE = input('Please enter a job title (Data Analyst/ Data Scientist/ Data Engineer): ')
+TIME = input('Please enter scraping time of data (Midterm/ Final): ')
+
+
+def get_job_html_db(JOB_TITLE, TIME):
+    if TIME == "Final":
+        read_table_name = f"job_des_html_{JOB_TITLE}".lower().replace(" ","_")
+        job_description_html_df = pd.read_sql_table(read_table_name, engine)
+    if TIME == "Midterm":
+        read_table_name = f"job_des_html_{TIME}_{JOB_TITLE}".lower().replace(" ","_")
+        job_description_html_df = pd.read_sql_table(read_table_name, engine)
+    return job_description_html_df
 
 
 def add_cleaned_html_text_column(job_description_html_df):
@@ -82,7 +94,52 @@ def add_experience_level_column(job_description_html_df):
             job_description_html_df['exp_level'][i] = '5+'
     return job_description_html_df
 
+
+def job_cleaned_description_sql_db(df_basic):
+    """upload cleaned job description to database"""
+    job_cleaned_des_db_name = f"job_cleaned_description_{TIME}_{JOB_TITLE}".lower().replace(" ","_")
+    schema = {
+
+
+        "jid": String,
+        "jidhtml": String,
+        "title": String,
+        "clean_description": String,
+        "clean_description_n_v_j_only": String,
+        "degree": String,
+        "required_experience": Numeric,
+        "exp_level": String,
+
+
+
+    }
+
+
+    create_table_cmd = """
+    create table if not exists {}(
+
+        jid varchar,
+        jidhtml varchar,
+        title varchar,
+        clean_description varchar,
+        clean_description_n_v_j_only varchar,
+        degree varchar,
+        required_experience numeric,
+        exp_level varchar
+    );""".format(job_cleaned_des_db_name)
+    
+
+    df_basic.to_sql(job_cleaned_des_db_name, engine, if_exists = "replace", dtype = schema, index = False)
+    engine.connect().exec_driver_sql(create_table_cmd)
+    
+    
 if __name__ == '__main__':
 
+    job_description_html_df = get_job_html_db(JOB_TITLE, TIME)
     job_description_html_df = add_cleaned_html_text_column(job_description_html_df)
     job_description_html_df = add_v_n_j_only_description(job_description_html_df, 'clean_description', 'clean_description_n_v_j_only')
+    job_description_html_df = add_degree_column(job_description_html_df)
+    job_description_html_df = add_experience_column(job_description_html_df)
+    job_description_html_df = add_experience_level_column(job_description_html_df)
+
+    job_cleaned_description_sql_db(job_description_html_df)
