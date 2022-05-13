@@ -1,7 +1,5 @@
-select cast(rating as float)
-from job_basic_information_all
-where rating !=''
 
+create view rs as
 select result.*,case
     when result.rating >= 0 and result.rating < 2.5 then 'Rating 0-2.5'
     when result.rating >= 2.5 and result.rating <= 4.0 then 'Rating 2.5-4.0'
