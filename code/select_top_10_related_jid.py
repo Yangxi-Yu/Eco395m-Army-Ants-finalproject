@@ -7,6 +7,7 @@ from numpy.linalg import norm
 from sklearn.feature_extraction.text import CountVectorizer
 
 def extract_features(data_source_df, data_source_column):
+    """""Extract input data features, save and return a dataframe."""""
     vectorizer = CountVectorizer()
     vectorizer.fit(data_source_df[data_source_column].tolist())
     vector = vectorizer.transform(data_source_df[data_source_column].tolist())
@@ -24,12 +25,14 @@ def extract_features(data_source_df, data_source_column):
 
 
 def calculate_cosine_similarity(array_A, array_B):
+    """calculate cosine similarity"""
     cosine = np.dot(array_A,array_B)/(norm(array_A, axis=1)*norm(array_B))
     return cosine
 
 
 
 def create_job_description_cosine_similarity_matrix(job_description_features_df):
+    """Calculate cosine similarity between every jid and return a matrix."""
     cosine_similarity_df = pd.DataFrame(index=job_description_features_df['jid'])
     n_jid = 1
     for i in range(0, len(cosine_similarity_df)):
@@ -48,6 +51,7 @@ def create_job_description_cosine_similarity_matrix(job_description_features_df)
 
 
 def jid_top_10_related_job(job_description_cosine_similarity_df):
+    """Find top 10 related jod."""
     job_description_cosine_similarity_df = job_description_cosine_similarity_df.set_index('jid')
     top_25_jid_df = pd.DataFrame()
     for jid in job_description_cosine_similarity_df.index:
