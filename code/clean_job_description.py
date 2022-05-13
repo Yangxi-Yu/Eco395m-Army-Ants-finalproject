@@ -41,9 +41,22 @@ def add_v_n_j_only_description(job_description_html_df, raw_column_name, new_col
         job_description_html_df[new_column][row] = n_v_j_txt
     return job_description_html_df
 
-
+def add_degree_column(job_description_html_df):
+    len_df = len(job_description_html_df)
+    job_description_html_df['degree'] = ''
+    for i in range(0,len_df):
+        html = BeautifulSoup(job_description_html_df['jidhtml'][i],'html.parser')
+        script = html.find_all(id = 'jobDescriptionText')
+        if re.search('bachelor', str(script).lower()) or re.search(' ba ', str(script).lower()) or re.search(' bs ', str(script).lower()) or re.search('undergraduate', str(script).lower()) or re.search(' b.a. ', str(script).lower()) or re.search(' b.s. ', str(script).lower()):
+            job_description_html_df['degree'][i] = 'bachelor'
+        elif re.search('master', str(script).lower()) or re.search(' ms ', str(script).lower()) or re.search(' ma ', str(script).lower()) or re.search(' m.s. ', str(script).lower()) or re.search(' m.a. ', str(script).lower()):
+            job_description_html_df['degree'][i] = 'master'
+        elif re.search(' phd ', str(script).lower()) or re.search('ph.d', str(script).lower()):
+            job_description_html_df['degree'][i] = 'phd'
+    return job_description_html_df
 
 if __name__ == '__main__':
 
     job_description_html_df = add_cleaned_html_text_column(job_description_html_df)
     job_description_html_df = add_v_n_j_only_description(job_description_html_df, 'clean_description', 'clean_description_n_v_j_only')
+    job_description_html_df = add_degree_column(job_description_html_df)
