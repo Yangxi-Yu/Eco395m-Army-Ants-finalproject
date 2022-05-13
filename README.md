@@ -63,7 +63,11 @@ Taking Austin, TX as an example, because we’re current graduate students, so w
 
 Now we make the cross-sectional analysis. In the past 3 months, the proportion of the remote job and the job satisfaction are increasing. It’s reasonable for the job contentment when we consider the recovery from the covid pandemic. For the job type, it’s surprising that the remote job has risen, and we guess that would be the future trend and many job seekers will consider more data positions when they search the job information.
 
+The next part below the horizontal bar chart is one table that includes the company’s name, city, job titles, and job links. The number of information corresponds to the total number: 86 after we select the Austin and master’s degree levels. Job seekers can just click the link and apply for it on indeed and it’s very convenient for job seekers to see and find real jobs quickly if they fill out basic information at the top of this page.
 
+Another advantage of this searching page is at the left corner named Similarity Matrix. If job seekers click the job title in the job posting part, it will connect the specific information of this job in Indeed. When they go back to the Searching page of the Dashboard, the page will use this job id and illustrate other Top 10 similar jobs which job seekers can choose and compare. 
+
+This page also includes one cartoon image which attracts people to click. When job seekers click it, it will connect to one Jupyter lab, and job seekers can type jobs’ basic information on this page. When it runs and the Searching page has been renewed after interacting with Jupyter, the Recommendation part in the right corner provides several jobs which fulfill the requirement of job seekers’ willingness and job’s basic information. This interaction can help job seekers get several recommendations when they use the Searching page. 
 
 
 ## Limitations
@@ -154,7 +158,10 @@ Run `python3 database_code/get_industry.py` and enter a job title (Data Analyst/
 In Dbeaver, run `database_code/merge_jid_cmp.sql` to merge tables containing job id and company name into one table named `merge_jid_cmp`. Similarly, run `database/merge_cmp_industry.sql` to get one table named `merge_cmp_industry` by dealing with tables containing company name and industry.
 
 #### Step 2. Clean the tables above
-In merge_cmp_industry table, there are 3 situations needed to be solved. 1) a same company has different expressions for industry, such as ‘HealthCare’ and ‘Health Care’. 2) The industry corresponding to a same company has a real value and an empty value. 3) Some companies have empty values of industry.
+In merge_cmp_industry table, there are 3 situations needed to be solved. 
+(1) a same company has different expressions for industry, such as ‘HealthCare’ and ‘Health Care’.  
+(2) The industry corresponding to a same company has a real value and an empty value. 
+(3) Some companies have empty values of industry.
 To solve these problems, we group the companies by name, taking only the first line, ensuring that each company corresponds to an industry, i.e., run `database_code/clean_cmp_industry.sql`
 
 #### Step 3. Get counting of skills
