@@ -11,6 +11,10 @@
 * Chengkan Tao
 * Yiwen Wang
 * Shankai Liao
+
+## Methodology
+
+
 ## Findings
 After making the data visualization in Tableau, we get a story composed of 2 dashboards: Overview and Searching. The Overview gives basic information about the posted jobs across NY, TX, and CA. When choosing a specific country, the dashboard will show the country-specific job salary, the number of job postings, the main industry, and the companies. The interactive dashboard pictures the general portrait of the data-related jobs. Then we design the Searching, which includes the information of posted jobs, to help jobseekers to find jobs based on their unique needs by using the filter on the top.
 ### *Overview*
@@ -41,4 +45,6 @@ Now we make the cross-sectional analysis. In the past 3 months, the proportion o
 
 ## Limitation
 1. Intuitively, the salary for the same position is higher in NYC than in California and Texas. However, from our dashboard, it’s the opposite. San Francisco’s posted position’s salary is the highest. The possible reason is that many posted jobs don’t mention their salary in the job description, thus leading to this bias. Another reason is NYC has many diverse companies and some small corporates provide lower salary to jobseekers. This can decrease the mean salary of data positions in NYC and the result opposites our intuitions. We will research and use more data to get accurate information on the data-related positions in big cities.
+
+## Instructions
 
