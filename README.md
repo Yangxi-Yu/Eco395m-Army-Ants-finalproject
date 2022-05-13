@@ -48,3 +48,20 @@ Now we make the cross-sectional analysis. In the past 3 months, the proportion o
 
 ## Instructions
 
+### 2-1. Data Cleaning – clean job description
+Run `python3 code/clean_job_description.py` and enter job title, scraping time, which will clean job description HTML for each job in our database and add degree, experience level columns.
+
+|Generate Tables|Parameters Entered|
+|--------------|------------------|
+|job_cleaned_description_midterm_data_analyst|Data Analyst, Midterm|
+|job_cleaned_description_midterm_data_scientist|Data Scientist, Midterm|
+|job_cleaned_description_midterm_data_engineer|Data Engineer, Midterm|
+|job_cleaned_description_final_data_analyst|Data Analyst, Final|
+|job_cleaned_description_final_data_scientist|Data Scientist, Final|
+|job_cleaned_description_final_data_engineer|Data Engineer, Final|
+
+### 2-2. Job-Job Matching Tool
+Run `python3 code/ select_top_10_related_jid.py`, which return a top 10 related jobs for each job in our database. The output table is `select_top_10`.
+
+### 2-3. Resume-Job Matching Tool
+Open and run `input.ipynb`, and enter Job Title, Location, Date Posted, your Highest Education, Experience Level, and your resume/keywords you want to search. It will return a top 50 related job in our database. The output table is `cosine_similarity_matrix`.
