@@ -14,6 +14,8 @@
 
 ## Methodology
 
+### Matching Tools
+![Methodology-Tools](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/140-model-methodology/image/Methodology%20-%20Matching%20Tools%201.png)
 
 ## Findings
 After making the data visualization in Tableau, we get a story composed of 2 dashboards: Overview and Searching. The Overview gives basic information about the posted jobs across NY, TX, and CA. When choosing a specific country, the dashboard will show the country-specific job salary, the number of job postings, the main industry, and the companies. The interactive dashboard pictures the general portrait of the data-related jobs. Then we design the Searching, which includes the information of posted jobs, to help jobseekers to find jobs based on their unique needs by using the filter on the top.
