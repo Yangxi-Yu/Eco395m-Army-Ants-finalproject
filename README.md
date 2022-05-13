@@ -12,6 +12,15 @@
 * Yiwen Wang
 * Shankai Liao
 
+## Data Source
+The raw data comes from the [Indeed](https://www.indeed.com) website. 
+
+## Goal of the Analysis
+The final project will continue to explore the topic in Midterm of how to find the data-relevant position in Indeed. The goals are to give an insightful idea about the data-relevant job market in Texas, California, and New York, visualized by Tableau and to help job-seekers match the job position effectively and efficiently by developing a interactive matching tool. 
+
+Compared with our midterm project, there are some improvements: 1. Using PostgreSQL to store the web-scraping data from Indeed and organize and optimize the database efficiently; 2. Using Data Studio as Dashboard to visualize the data and illustrates the trend of different position on a time-varying scale;
+3. Using regex, NLTK and NLP for text analysis (soft skills, responsibility, and requirement) and machine learning algorithm( or cos-similarity) to improve the matching accuracy.
+
 ## Methodology
 
 ### High Level - Overview
