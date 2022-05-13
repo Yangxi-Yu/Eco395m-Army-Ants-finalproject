@@ -156,6 +156,32 @@ def input_txt_return_top_50_related_job(job_description_features_df, cleaned_inp
     )
     return jid_cosine_similarity_df.head(50)
 
+def resume_job_matching():
+    """Concatenate all the function above."""
+    position = input("Job Title(Data Analyst/ Data Engineer/ Data Scientist/ All): ")
+    location = input("Location(New York State/ California/ Texas/ All):")
+    date_post = input("Date Posted: Last __ Days.(Please enter a number)")
+    degree = input("Highest Education(bachelor/ master/ phd): ")
+    exp_level = input("Experience Level(0-3/ 3-5/ 5+):")
+    input_text = input("Search Keywords or paste your resume:")
+
+    data_source_filter_df = data_source_filter(
+        position, degree, location, exp_level, date_post
+    )
+
+    if data_source_filter_df.empty:
+        return print("Sorry, no job matches in our database.")
+    else:
+
+        job_description_features_df = extract_features(
+            data_source_filter_df, "clean_description_n_v_j_only"
+        )
+        cleaned_input_txt = clean_input_text(input_text)
+        resume_job_matching_df = input_txt_return_top_50_related_job(
+            job_description_features_df, cleaned_input_txt
+        )
+        return resume_job_matching_df
+
 
 def consine_matrix_to_sql(df):
     schema = {
