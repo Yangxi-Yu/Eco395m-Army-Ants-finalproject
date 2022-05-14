@@ -233,7 +233,7 @@ Open and run `input.ipynb`, and enter Job Title, Location, Date Posted, your Hig
 ### 4 Tableau Dashboard
 Use Tableau to better achieve storytelling with visualization in interaction. The brief introduction is as follows.
 
-### 4.1 Build a Database in Tableau
+### 4-1 Build a Database in Tableau
 ![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/main/image/Dashboard%20-%20Tableau%20Database.png)
 The graph above illustrates the structure of built-in database in Tableau. The primary table is `t_city_date_all`, which stores the all job-posting with dimension of city and date. The primary key between `t_city_date_all` and `merge_company_name_industry` is `Company Name` while others are `jid`. Here are the table for the relation between each table and the function.
 
@@ -251,7 +251,7 @@ The graph above illustrates the structure of built-in database in Tableau. The p
 |t_salary|jid|includes avg_salary and salary_scale|
 |top_10_transformed_sql|jid|includes top 10 job posting in similarity matrix |
 
-### 4.2 Overview Dashboard
+### 4-2 Overview Dashboard
 The goal of **Dashboard Overview** is to brifly introduce the data-related job-market. Here is a brief introduction of how to build these graph.
 
 **(1)map**: Use `t_city_date` to build layer of map and `count(jid)` as size of the point. 
@@ -264,7 +264,7 @@ The goal of **Dashboard Overview** is to brifly introduce the data-related job-m
 
 **(5)Comopany** Use `merge_company_name_industry` for **treemap**. The color represents industry and the size for count(jid) of job-postings for differenct companys.The graph is connected with the selection of different city in the **map**.
 
-### 4.3 Searching Dashboard
+### 4-3 Searching Dashboard
 The goal of **Searching Overview** is to simulate the job-seeking process with interaction. Besides, the dashboard involves recommendation function. Here is a brief introduction of how to build these graph.
 
 **1.graph**:
