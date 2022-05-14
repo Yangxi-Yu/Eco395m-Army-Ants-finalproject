@@ -268,6 +268,7 @@ The goal of **Dashboard Overview** is to brifly introduce the data-related job-m
 The goal of **Searching Overview** is to simulate the job-seeking process with interaction. Besides, the dashboard involves recommendation function. Here is a brief introduction of how to build these graph.
 
 **1.graph**:
+
 (1) Company-Most Post: Use `company name` and `count(jid)` in `t_city_date` to build with top 10 ranking.(Under All filters)  
 (2) Job_Postiing Number: Use `count(jid)` in `t_city_date` to show the total number of posted job.(Under All filters)  
 (3) Skills-Most posted: Use `skill` in `merge_job_skills_counts_transformed` and `sum(count)` to calculate the frequency of skills. The graph is only linked to `job type` filter.
