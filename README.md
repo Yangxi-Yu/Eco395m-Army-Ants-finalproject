@@ -280,6 +280,7 @@ The goal of **Searching Overview** is to simulate the job-seeking process with i
 (9) bachelor: Use 'count(jid)' and 'Degree' in `job_degree` to contruct bar chart.(Under All filters)  
 
 **2.text tables**:
+
 (1) job posting tables: Shows all job_pistings with url_links in 't_city_date_all'. Click the url to the job_posting website in Indeed.(Under All filters)  
 (2) Similarity Matrix: Linked to selection of `job posting tables`. Recommend top 10 correlated job postings with url_links in `top_10_transformed_sql`. Click to exact job-posting website in Indeed.
 (3) Recommendation: Shows recommended `jid`,`job_postings` and `url`after submitting resume. Click to exact website with hyperlink. 
