@@ -254,9 +254,9 @@ The graph above illustrates the structure of built-in database in Tableau. The p
 ### 4-2 Overview Dashboard
 The goal of **Dashboard Overview** is to brifly introduce the data-related job-market. Here is a brief introduction of how to build these graph.
 
-**(1)map**: Use `t_city_date` to build layer of map and `count(jid)` as size of the point. 
+**(1)Map**: Use `t_city_date` to build layer of map and `count(jid)` as size of the point. 
 
-**(2)job_posting**: Use `t_city_date` to build the stacked chart. Specifically, we use `date` in week dimension to construct the timeline, the `count(jid)` as the shaded area and `title` for 3 different data-related jobs. The graph is connected with the selection of different city in the **map**.
+**(2)Job_posting**: Use `t_city_date` to build the stacked chart. Specifically, we use `date` in week dimension to construct the timeline, the `count(jid)` as the shaded area and `title` for 3 different data-related jobs. The graph is connected with the selection of different city in the **map**.
 
 **(3)Salary**: Use `t_city_date` and `t_salary` to build Salary table. The numeric is average number of the salary in different city. The graph is connected with the selection of different city in the **map**.
 
@@ -267,7 +267,7 @@ The goal of **Dashboard Overview** is to brifly introduce the data-related job-m
 ### 4-3 Searching Dashboard
 The goal of **Searching Overview** is to simulate the job-seeking process with interaction. Besides, the dashboard involves recommendation function. Here is a brief introduction of how to build these graph.
 
-**1.graph**:
+**1.Graph**:
 
 (1) Company-Most Post: Use `company name` and `count(jid)` in `t_city_date` to build with top 10 ranking.(Under All filters)  
 (2) Job_Postiing Number: Use `count(jid)` in `t_city_date` to show the total number of posted job.(Under All filters)  
@@ -279,7 +279,7 @@ The goal of **Searching Overview** is to simulate the job-seeking process with i
 (8) exp_level: Use `count(jid)` and `Exp_Level` in 'merge_job_cleaned_description' to contruct bar chart.(Under All filters)  
 (9) bachelor: Use 'count(jid)' and 'Degree' in `job_degree` to contruct bar chart.(Under All filters)  
 
-**2.text tables**:
+**2.Text Tables**:
 
 (1) job posting tables: Shows all job_pistings with url_links in 't_city_date_all'. Click the url to the job_posting website in Indeed.(Under All filters)  
 (2) Similarity Matrix: Linked to selection of `job posting tables`. Recommend top 10 correlated job postings with url_links in `top_10_transformed_sql`. Click to exact job-posting website in Indeed.
