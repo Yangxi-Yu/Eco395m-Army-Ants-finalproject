@@ -234,5 +234,7 @@ Open and run `input.ipynb`, and enter Job Title, Location, Date Posted, your Hig
 Use Tableau to better achieve storytelling with visualization in interaction. The brief introduction is as follows.
 
 ### 4.1 Build a database in Tableau
-![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/Tableau Database.png)
+![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/Dashboard - Tableau Database.png)
+The graph above illustrates the structure of built-in database in Tableau. 
+
 
