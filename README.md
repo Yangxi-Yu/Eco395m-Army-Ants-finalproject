@@ -228,3 +228,11 @@ Run `python3 code/ select_top_10_related_jid.py`, which return a top 10 related 
 
 ### 3-2. Resume-Job Matching Tool
 Open and run `input.ipynb`, and enter Job Title, Location, Date Posted, your Highest Education, Experience Level, and your resume/keywords you want to search. It will return a top 50 related job in our database. The output table is `cosine_similarity_matrix`.
+
+
+### 4 Tableau Dashboard
+Use Tableau to better achieve storytelling with visualization in interaction. The brief introduction is as follows.
+
+### 4.1 Build a database in Tableau
+![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/readme_gif/image/Tableau Database.png)
+
