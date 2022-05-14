@@ -233,8 +233,22 @@ Open and run `input.ipynb`, and enter Job Title, Location, Date Posted, your Hig
 ### 4 Tableau Dashboard
 Use Tableau to better achieve storytelling with visualization in interaction. The brief introduction is as follows.
 
-### 4.1 Build a database in Tableau
+### 4.1 Build a Database in Tableau
 ![This is an image](https://github.com/Yangxi-Yu/Eco395m-Army-Ants-finalproject/blob/main/image/Dashboard%20-%20Tableau%20Database.png)
-The graph above illustrates the structure of built-in database in Tableau. 
+The graph above illustrates the structure of built-in database in Tableau. The primary table is `t_city_date_all`, which stores the all job-posting with dimension of city and date. The primary key between `t_city_date_all` and `merge_company_name_industry` is `Company Name` while others are `jid`. Here are the table for the relation between each table and the function.
+
+
+|Tables|Linked Key|Function|
+|--------------|------------------|------------------|
+|t_city_date_all|jid, Company Name|Main info with City, Date Prime Table|
+|cosine_similarity_matrix|Jid|recommendated job_title, url and cos_similarity|
+|job_degree|jid|includes degree|
+|merge_company_name_industry|Company Name|includes Company Name and Industry|
+|merge_job_cleaned_description|jid|includes experience_level|
+|merge_job_skills_counts_transformed|jid|includes skill frequency|
+|t_categorized_rating|jid|includes rating and rating scale|
+|t_job_type|jid|includes remote/in-person/hybrid|
+|t_salary|jid|includes avg_salary and salary_scale|
+|top_10_transformed_sql|jid|includes top 10 job posting in similarity matrix |
 
 
