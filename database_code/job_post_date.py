@@ -120,7 +120,7 @@ def job_info_sql_db(df_basic):
 
 
     create_table_cmd = """
-    create table if not exists job_post_date_midterm(
+    create table if not exists job_post_date(
 
         jid varchar,
         fromage varchar,
@@ -133,7 +133,7 @@ def job_info_sql_db(df_basic):
     );"""
     
 
-    df_basic.to_sql("job_post_date_midterm", engine, if_exists = "replace", dtype = schema, index = False)
+    df_basic.to_sql("job_post_date", engine, if_exists = "replace", dtype = schema, index = False)
     engine.connect().exec_driver_sql(create_table_cmd)
 
 if __name__ == "__main__":
