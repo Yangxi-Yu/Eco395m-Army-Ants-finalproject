@@ -142,8 +142,10 @@ This time we select all of jobs, releasing the restriction of just selecting 300
 
 In sql, merge tables of midterm data with tables with final data and get merge_job_des_html. Run `database-code/merge_job_des_html.sql` in Dbeaver to get `merge_job_des_html` table.
 
-### 2-1. Data Cleaning: clean HTML tables to get basic information for each job
-Output: `job_basic_information_midterm`, `job_basic_information_final`, `job_basic_information_all`
+### 2. Data Cleaning
+### 2-1. Clean HTML tables to get basic information for each job
+Output: `job_basic_information_midterm`; `job_basic_information_final`; `job_basic_information_all`
+
 Run `python3 database_code/html_dataframe.py` to generate job_basic_information_midterm, job_basic_information_final, job_basic_information_all with information of job_id, salary, ratings, company, location, title, specific location and specific title. 
 
 |Generate Tables|Parameters Entered|
@@ -152,11 +154,12 @@ Run `python3 database_code/html_dataframe.py` to generate job_basic_information_
 |job_basic_information_final|Final|
 |job_basic_information_all|All|
 
-### 2-2. Data Cleaning: clean HTML tables to get posted date for each job
+### 2-2. Clean HTML tables to get posted date for each job
 Output: `job_post_date`; `job_post_date_midterm`; `merge_job_post_date`
+
 Run `python3 database_code/job_post_date.py` and `python3 database_code/job_post_date_midterm.py` to generate job_post_date with job_id, title, location and some information of posted date. In sql, we get two tables named `job_post_date` and `job_post_date_midterm`. Then run `database-code/merge_job_post_date.sql` to merge these two tables into `merge_job_post_date`.
 
-### 2-3. Data Cleaning: clean HTML tables to get detailed information for each job
+### 2-3. Clean HTML tables to get detailed information for each job
 Output: `merge_jid_cmp`; `merge_cmp_industry`
 
 #### Step 1. Get the tables of industry information
@@ -180,10 +183,10 @@ Run `python3 database_code/get_industry.py` and enter a job title (Data Analyst/
 In Dbeaver, run `database_code/merge_jid_cmp.sql` to merge tables containing job id and company name into one table named `merge_jid_cmp`. Similarly, run `database/merge_cmp_industry.sql` to get one table named `merge_cmp_industry` by dealing with tables containing company name and industry.
 
 #### Step 2. Clean the tables above
-In merge_cmp_industry table, there are 3 situations needed to be solved. 
-(1) a same company has different expressions for industry, such as ‘HealthCare’ and ‘Health Care’.  
-(2) The industry corresponding to a same company has a real value and an empty value. 
-(3) Some companies have empty values of industry.
+In merge_cmp_industry table, there are 3 situations needed to be solved.        
+(1) a same company has different expressions for industry, such as ‘HealthCare’ and ‘Health Care’.     
+(2) The industry corresponding to a same company has a real value and an empty value.      
+(3) Some companies have empty values of industry.   
 To solve these problems, we group the companies by name, taking only the first line, ensuring that each company corresponds to an industry, i.e., run `database_code/clean_cmp_industry.sql`
 
 #### Step 3. Get counting of skills
@@ -205,11 +208,9 @@ Run `database_code/build_up_relationships.sql` in Dbeaver:
 (1) Select `company name` as a primary key in `merge_company_name_industry` table, and connect the foreign key `company name` in `merge_jid_cmp table`.
 (2) Select `jid` as a primary key in `merge_job_des_html` table, and connect the foreign key `jid` in `merge_jid_cmp` table.
 (3) Select `jid` as a foreign key in `job_basic_information_all` table, and connect the primary key `jid` in `merge_job_des_html` table.
-(4) Select `jid` as a foreign key in `merge_job_post_date` table, and connect the primary key `jid` in `merge_job_des_html` table.
+(4) Select `jid` as a foreign key in `merge_job_post_date` table, and connect the primary key `jid` in `merge_job_des_html` table.   
 
-
-
-### 2-5. Data Cleaning – clean job description
+### 2-5. Clean job description
 Run `python3 code/clean_job_description.py` and enter job title, scraping time, which will clean job description HTML for each job in our database and add degree, experience level columns.
 
 |Generate Tables|Parameters Entered|
