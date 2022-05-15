@@ -278,7 +278,7 @@ The goal of **Searching Overview** is to simulate the job-seeking process with i
 (6) rating scale: Use `count(jid)` and `rating scale` in `t_salary` to contruct bar chart.(Under All filters)  
 (7) Salary:  Use `count(jid)` and `salary scale` in `t_categorized_rating` to contruct bar chart.(Under All filters)  
 (8) exp_level: Use `count(jid)` and `Exp_Level` in 'merge_job_cleaned_description' to contruct bar chart.(Under All filters)  
-(9) bachelor: Use 'count(jid)' and 'Degree' in `job_degree` to contruct bar chart.(Under All filters)  
+(9) bachelor: Use `count(jid)` and `Degree` in `job_degree` to contruct bar chart.(Under All filters)  
 
 **2.Text Tables**:
 
