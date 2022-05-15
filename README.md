@@ -263,7 +263,7 @@ The goal of **Dashboard Overview** is to brifly introduce the data-related job-m
 
 **(4)Industry** Use `t_city_date` and `merge_company_name_industry` to construct industry stacked chart, which includes the dimension of `date`,`title`. Use count(jid) to illustrate the shaded arer. The graph is connected with the selection of different city in the **map**.
 
-**(5)Comopany** Use `merge_company_name_industry` for **treemap**. The color represents industry and the size for count(jid) of job-postings for differenct companys.The graph is connected with the selection of different city in the **map**.
+**(5)Comopany** Use `merge_company_name_industry` for **treemap**. The color represents industry and the size for `count(jid)` of job-postings for differenct companys.The graph is connected with the selection of different city in the **map**.
 
 ### 4-3 Searching Dashboard
 The goal of **Searching Overview** is to simulate the job-seeking process with interaction. Besides, the dashboard involves recommendation function. Here is a brief introduction of how to build these graph.
@@ -272,7 +272,7 @@ The goal of **Searching Overview** is to simulate the job-seeking process with i
 
 (1) Company-Most Post: Use `company name` and `count(jid)` in `t_city_date` to build with top 10 ranking.(Under All filters)  
 (2) Job_Postiing Number: Use `count(jid)` in `t_city_date` to show the total number of posted job.(Under All filters)  
-(3) Skills-Most posted: Use `skill` in `merge_job_skills_counts_transformed` and `sum(count)` to calculate the frequency of skills. The graph is only linked to `job type` filter.
+(3) Skills-Most posted: Use `skill` in `merge_job_skills_counts_transformed` and `sum(count)` to calculate the frequency of skills. The graph is only linked to `job type` filter.     
 (4) job title: Use `count(jid)` and `title` in `t_city_date` to contruct bar chart.(Under All filters)  
 (5) job type: Use `count(jid)` and `job_type`in `t_job_type` to contruct bar chart.(Under All filters)  
 (6) rating scale: Use `count(jid)` and `rating scale` in `t_salary` to contruct bar chart.(Under All filters)  
