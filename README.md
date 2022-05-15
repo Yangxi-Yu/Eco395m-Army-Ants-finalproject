@@ -243,18 +243,18 @@ Run `code/Dashboard_py/skills_transforms.py` and `code/Dashboard_py/top_10_sql_t
 The graph above illustrates the structure of built-in database in Tableau. The primary table is `t_city_date_all`, which stores the all job-posting with dimension of city and date. The primary key between `t_city_date_all` and `merge_company_name_industry` is `Company Name` while others are `jid`. Here are the table for the relation between each table and the function.
 
 
-|Tables|Linked Key|Function|
-|--------------|------------------|------------------|
-|t_city_date_all|jid, Company Name|Main info with City, Date Prime Table|
-|cosine_similarity_matrix|jid|recommendated job_title, url and cos_similarity|
-|job_degree|jid|includes degree|
-|merge_company_name_industry|Company Name|includes Company Name and Industry|
-|merge_job_cleaned_description|jid|includes experience_level|
-|merge_job_skills_counts_transformed|jid|includes skill frequency|
-|t_categorized_rating|jid|includes rating and rating scale|
-|t_job_type|jid|includes remote/in-person/hybrid|
-|t_salary|jid|includes avg_salary and salary_scale|
-|top_10_transformed_sql|jid|includes top 10 job posting in similarity matrix |
+|Tables|Linked Key|Function|sql_table|
+|--------------|------------------|------------------|------------------|
+|t_city_date_all|jid, Company Name|Main info with City, Date ,Prime Table|combine_city_date .sql|
+|cosine_similarity_matrix|jid|recommendated job_title, url and cos_similarity||
+|job_degree|jid|includes degree|view_degree.sql||
+|merge_company_name_industry|Company Name|includes Company Name and Industry||
+|merge_job_cleaned_description|jid|includes experience_level||
+|merge_job_skills_counts_transformed|jid|includes skill frequency||
+|t_categorized_rating|jid|includes rating and rating scale||
+|t_job_type|jid|includes remote/in-person/hybrid|view_hybrid.sql|
+|t_salary|jid|includes avg_salary and salary_scale|rating_scale.sql|
+|top_10_transformed_sql|jid|includes top 10 job posting in similarity matrix ||
 
 ### 4-3. Overview Dashboard
 The goal of **Dashboard Overview** is to brifly introduce the data-related job-market. Here is a brief introduction of how to build these graph.       
