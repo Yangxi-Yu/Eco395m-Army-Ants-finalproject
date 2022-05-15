@@ -234,7 +234,7 @@ Open and run `input.ipynb`, and enter Job Title, Location, Date Posted, your Hig
 
 
 ### 4. Tableau Dashboard
-Use Tableau to better achieve storytelling with visualization in interaction. The brief introduction is as follows. 
+Use Tableau to better achieve storytelling with visualization in interaction. The brief introduction is as follows.             
 Link: https://prod-useast-a.online.tableau.com/#/site/armyants/workbooks/516523?:origin=card_share_link (Story - Army Ants)
 
 ### 4-1. Data Transformation
