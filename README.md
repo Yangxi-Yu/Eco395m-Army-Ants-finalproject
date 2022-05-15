@@ -257,16 +257,11 @@ The graph above illustrates the structure of built-in database in Tableau. The p
 |top_10_transformed_sql|jid|includes top 10 job posting in similarity matrix |
 
 ### 4-3. Overview Dashboard
-The goal of **Dashboard Overview** is to brifly introduce the data-related job-market. Here is a brief introduction of how to build these graph.
-
-**(1)Map**: Use `t_city_date` to build layer of map and `count(jid)` as size of the point. 
-
-**(2)Job_posting**: Use `t_city_date` to build the stacked chart. Specifically, we use `date` in week dimension to construct the timeline, the `count(jid)` as the shaded area and `title` for 3 different data-related jobs. The graph is connected with the selection of different city in the **map**.
-
-**(3)Salary**: Use `t_city_date` and `t_salary` to build Salary table. The numeric is average number of the salary in different city. The graph is connected with the selection of different city in the **map**.
-
-**(4)Industry** Use `t_city_date` and `merge_company_name_industry` to construct industry stacked chart, which includes the dimension of `date`,`title`. Use count(jid) to illustrate the shaded arer. The graph is connected with the selection of different city in the **map**.
-
+The goal of **Dashboard Overview** is to brifly introduce the data-related job-market. Here is a brief introduction of how to build these graph.       
+**(1)Map**: Use `t_city_date` to build layer of map and `count(jid)` as size of the point.        
+**(2)Job_posting**: Use `t_city_date` to build the stacked chart. Specifically, we use `date` in week dimension to construct the timeline, the `count(jid)` as the shaded area and `title` for 3 different data-related jobs. The graph is connected with the selection of different city in the **map**.       
+**(3)Salary**: Use `t_city_date` and `t_salary` to build Salary table. The numeric is average number of the salary in different city. The graph is connected with the selection of different city in the **map**.       
+**(4)Industry** Use `t_city_date` and `merge_company_name_industry` to construct industry stacked chart, which includes the dimension of `date`,`title`. Use count(jid) to illustrate the shaded arer. The graph is connected with the selection of different city in the **map**.       
 **(5)Comopany** Use `merge_company_name_industry` for **treemap**. The color represents industry and the size for `count(jid)` of job-postings for differenct companys.The graph is connected with the selection of different city in the **map**.
 
 ### 4-4. Searching Dashboard
@@ -287,7 +282,7 @@ The goal of **Searching Overview** is to simulate the job-seeking process with i
 **2.Text Tables**:
 
 (1) job posting tables: Shows all job_pistings with url_links in 't_city_date_all'. Click the url to the job_posting website in Indeed.(Under All filters)  
-(2) Similarity Matrix: Linked to selection of `job posting tables`. Recommend top 10 correlated job postings with url_links in `top_10_transformed_sql`. Click to exact job-posting website in Indeed.
+(2) Similarity Matrix: Linked to selection of `job posting tables`. Recommend top 10 correlated job postings with url_links in `top_10_transformed_sql`. Click to exact job-posting website in Indeed.       
 (3) Recommendation: Shows recommended `jid`,`job_postings` and `url`after submitting resume. Click to exact website with hyperlink. 
 
 **3.Button**:
