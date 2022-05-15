@@ -244,7 +244,7 @@ Run `code/Dashboard_py/skills_transforms.py` and `code/Dashboard_py/top_10_sql_t
 The graph above illustrates the structure of built-in database in Tableau. The primary table is `t_city_date_all`, which stores the all job-posting with dimension of city and date. The primary key between `t_city_date_all` and `merge_company_name_industry` is `Company Name` while others are `jid`. Here are the table for the relation between each table and the function. You can run these sql to create view if needed.
 
 
-|Tables|Linked Key|Function|sql_table|
+|Tables|Linked Key|Function|SQL Table|
 |--------------|------------------|------------------|------------------|
 |t_city_date_all|jid, Company Name|Main info with City, Date ,Prime Table|`city_date_final.sql`,`midterm_city_date.sql`,`combine_city_date .sql`|
 |cosine_similarity_matrix|jid|recommendated job_title, url and cos_similarity||
