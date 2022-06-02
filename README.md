@@ -20,7 +20,7 @@ The final project will continue to explore the topic in Midterm of how to find t
 
 Compared with our midterm project, there are some improvements: 
 1. Using PostgreSQL to store the web-scraping data from Indeed and organize and optimize the database efficiently; 
-2. Using Tabkeau as Dashboard to visualize the data and illustrates the trend of different position on a time-varying scale;
+2. Using Tableau as Dashboard to visualize the data and illustrates the trend of different position on a time-varying scale;
 3. Develop a matching tool to find the most related job postings in our database.
 
 ## Methodology
